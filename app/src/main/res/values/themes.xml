@@ -73,6 +73,11 @@
         <item name="cornerRadius">14dp</item>
     </style>
 
+
+    <style name="SpinnerTheme" parent="@android:style/Widget.Spinner">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
     <!-- Card style -->
     <style name="Widget.Booki.Card" parent="Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">@color/bg_card</item>

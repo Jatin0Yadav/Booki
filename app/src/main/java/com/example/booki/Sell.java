@@ -72,8 +72,11 @@ public class Sell extends AppCompatActivity {
         negotiable    = findViewById(R.id.cbNegotiable);
 
         String[] categories = {"Select Category", "JEE", "NEET", "UPSC", "SSC", "Other"};
-        spCategory.setAdapter(new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_dropdown_item, categories));
+        // ✅ Custom spinner layout — white text on dark background
+        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(
+                this, R.layout.spinner_item, categories);
+        categoryAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spCategory.setAdapter(categoryAdapter);
 
         btnUploadImage.setOnClickListener(v -> checkCameraPermission());
         btnSubmit.setOnClickListener(v -> uploadBook());

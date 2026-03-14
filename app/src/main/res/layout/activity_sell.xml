@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingHorizontal="20dp"
-        android:paddingTop="56dp"
+        android:paddingTop="16dp"
         android:paddingBottom="16dp"
         android:background="@color/bg_primary">
 
@@ -49,7 +49,7 @@
             android:paddingHorizontal="20dp"
             android:paddingBottom="32dp">
 
-            <!-- ── IMAGE CAPTURE ── -->
+            <!-- IMAGE CAPTURE -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/btnUploadImage"
                 android:layout_width="match_parent"
@@ -115,7 +115,6 @@
                 android:letterSpacing="0.12"
                 android:layout_marginBottom="12dp" />
 
-            <!-- Title -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -130,7 +129,6 @@
                     android:inputType="textCapWords" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Author -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -145,7 +143,6 @@
                     android:inputType="textCapWords" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Price + Edition row -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -183,7 +180,6 @@
 
             </LinearLayout>
 
-            <!-- Subject -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -209,6 +205,8 @@
                 android:letterSpacing="0.12"
                 android:layout_marginBottom="12dp" />
 
+            <!-- ✅ Spinner with popupBackground set to dark color -->
+            <!-- Text color is controlled by spinner_item.xml in res/layout -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -225,7 +223,9 @@
                     android:layout_height="52dp"
                     android:paddingHorizontal="16dp"
                     android:backgroundTint="@color/bg_input"
-                    android:popupBackground="@color/bg_elevated" />
+                    android:popupBackground="@color/bg_elevated"
+                    android:theme="@style/SpinnerTheme" />
+
             </com.google.android.material.card.MaterialCardView>
 
             <!-- ── SECTION: Condition ── -->
@@ -321,7 +321,6 @@
                     android:gravity="top" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Negotiable checkbox -->
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/cbNegotiable"
                 android:layout_width="match_parent"
@@ -332,7 +331,6 @@
                 android:textSize="14sp"
                 app:buttonTint="@color/accent" />
 
-            <!-- Post button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/postBook"
                 style="@style/Widget.Booki.Button"
