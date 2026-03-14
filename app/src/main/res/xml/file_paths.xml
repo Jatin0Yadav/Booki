@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- for getExternalFilesDir() -->
+    <external-files-path
+        name="external_images"
+        path="Pictures/" />
+
+    <!-- for getCacheDir() — fallback when external storage is unavailable -->
+    <cache-path
+        name="cache_images"
+        path="." />
+
+    <!-- for getFilesDir() -->
+    <files-path
+        name="files_images"
+        path="." />
+</paths>

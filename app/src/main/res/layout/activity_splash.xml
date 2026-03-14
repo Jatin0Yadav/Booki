@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#F9FF77"
+    android:orientation="vertical"
+    tools:context=".Splash">
+
+    <TextView
+        android:id="@+id/logo_text"
+        android:layout_width="308dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="280dp"
+        android:gravity="center"
+        android:text="@string/logo_text"
+        android:textColor="#6B4C02"
+        android:textSize="96sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_splash1" />
+
+    <ImageView
+        android:id="@+id/img_splash1"
+        android:layout_width="359dp"
+        android:layout_height="296dp"
+        android:layout_marginStart="-200dp"
+        android:layout_marginTop="-50dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginBottom="4dp"
+        android:transitionName="trans_img_splash1"
+        app:layout_constraintBottom_toTopOf="@+id/logo_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_splash1" />
+
+    <TextView
+        android:id="@+id/logo_txt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:fontFamily="@font/app_font"
+        android:text="Online Book Selling App"
+        android:textColor="#E6A10D"
+        app:layout_constraintBottom_toTopOf="@+id/img_splash2"
+        app:layout_constraintEnd_toEndOf="@+id/logo_text"
+        app:layout_constraintStart_toStartOf="@+id/logo_text"
+        app:layout_constraintTop_toBottomOf="@+id/logo_text" />
+
+    <ImageView
+        android:id="@+id/img_splash2"
+        android:layout_width="361dp"
+        android:layout_height="346dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginBottom="-50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_txt2"
+        app:srcCompat="@drawable/img_splash2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

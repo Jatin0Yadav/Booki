@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Booki</string>
+    <string name="logo_text">𝔅𝔬𝔬𝔨𝔦</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="jee_books">JEE Books</string>
+    <string name="upsc_books">UPSC Books</string>
+    <string name="neet_books">NEET Books</string>
+    <string name="title_home">What are you reading today?</string>
+    <string name="btn_sell">Sell</string>
+    <string name="search_home">Search Books, Authors...</string>
+    <string name="heading_category">Categories</string>
+    <string name="jee">JEE</string>
+    <string name="upsc">UPSC</string>
+    <string name="neet">NEET</string>
+    <string name="heading_featuredBooks">Featured Books</string>
+
+    <!-- Checkout activity -->
+    <string name="title_activity_checkout">CheckoutActivity</string>
+    <string name="checkout_item_description">Description</string>
+    <string name="googlepay_status_unavailable" translatable="false">Unfortunately, Google Pay is
+        not available on this phone.
+    </string>
+    <string name="payments_show_name" translatable="false">Successfully received payment data for
+        %s!
+    </string>
+</resources>

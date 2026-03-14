@@ -1,0 +1,31 @@
+{
+  "project_info": {
+    "project_number": "325490391600",
+    "firebase_url": "https://project-f3d16-default-rtdb.firebaseio.com",
+    "project_id": "project-f3d16",
+    "storage_bucket": "project-f3d16.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:325490391600:android:4ed6af142c1dc14a4dcbf5",
+        "android_client_info": {
+          "package_name": "com.example.booki"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqLBRZs29omMxXElKrXpNZ3Nr90U0eakc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
+
