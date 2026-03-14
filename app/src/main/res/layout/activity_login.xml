@@ -1,103 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/pinklight"
+    android:background="@color/bg_primary"
     android:orientation="vertical"
-    android:paddingTop="30dp">
+    android:gravity="center_horizontal">
 
+    <!-- Top spacer -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- ── LOGO IMAGE ── -->
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="210dp"
-        android:layout_height="148dp"
-        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center_horizontal"
         android:src="@drawable/img_splash1"
         android:transitionName="trans_img_splash1" />
 
+    <!-- ── WELCOME TEXT ── -->
     <TextView
         android:id="@+id/welcome_msg_login"
-        android:layout_width="293dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:fontFamily="@font/baloo_bhaijaan"
-        android:gravity="center"
-        android:text="Hello Buddy, Welcome Back!"
-        android:textColor="#000000"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        android:transitionName="trans_login_txt" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/email"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Email: "
-        android:transitionName="trans_username">
-
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/email_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/password"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Password: "
-        android:transitionName="trans_password"
-        app:passwordToggleEnabled="true">
-
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/password_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <Button
-        android:id="@+id/Go"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#9BEF3D"
-        android:gravity="center"
-        android:text="Go"
-        android:textColor="#000"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:transitionName="trans_Go" />
-
-    <Button
-        android:id="@+id/btn_login_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:backgroundTint="#BB1B120A"
-        android:gravity="center"
-        android:text="New User? Sign-Up"
-        android:textColor="#fff"
-        android:textSize="20sp"
+        android:layout_marginTop="16dp"
+        android:text="Welcome Back"
+        android:textColor="@color/text_primary"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:letterSpacing="-0.02"
+        android:transitionName="trans_login_txt" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="40dp"
+        android:text="Sign in to continue"
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp" />
+
+    <!-- ── FORM CARD ── -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        app:cardBackgroundColor="@color/bg_card"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/border"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- Email -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/email"
+                style="@style/Widget.Booki.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:hint="Email"
+                android:transitionName="trans_username">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Password -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password"
+                style="@style/Widget.Booki.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:hint="Password"
+                android:transitionName="trans_password"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/text_secondary">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Login Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/Go"
+                style="@style/Widget.Booki.Button"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:text="Sign In"
+                android:textSize="16sp"
+                android:transitionName="trans_Go"
+                app:cornerRadius="16dp" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- ── SIGNUP LINK ── -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_login_signup"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="New here? Create an account →"
+        android:textColor="@color/accent"
+        android:textSize="14sp"
         android:transitionName="trans_login_signup" />
 
-    <FrameLayout
+    <!-- Bottom spacer -->
+    <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </FrameLayout>
-
+        android:layout_height="0dp"
+        android:layout_weight="1.5" />
 
 </LinearLayout>
