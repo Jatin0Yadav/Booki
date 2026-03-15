@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_primary"
-    tools:context=".Dashboard1">
+    tools:context=".Dashboard">
 
     <!-- ✅ Toolbar REMOVED from here — each fragment handles its own header -->
 

@@ -20,7 +20,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
@@ -63,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
             E.putBoolean("flag", true);
             E.apply();
 
-            Intent i = new Intent(this, Dashboard1.class);
+            Intent i = new Intent(this, Dashboard.class);
             startActivity(i);
         });
 
@@ -115,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Toast.makeText(LoginActivity.this, "Authentication successful.",
                                 Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginActivity.this, Dashboard1.class);
+                        Intent intent = new Intent(LoginActivity.this, Dashboard.class);
                         startActivity(intent);
                         finish();
                     } else {

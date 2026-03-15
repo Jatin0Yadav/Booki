@@ -1,72 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:background="#F9FF77"
-    android:orientation="vertical"
+    android:background="@drawable/splash_bg"
     tools:context=".Splash">
 
-    <TextView
-        android:id="@+id/logo_text"
-        android:layout_width="308dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="280dp"
-        android:gravity="center"
-        android:text="@string/logo_text"
-        android:textColor="#6B4C02"
-        android:textSize="96sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+    <!-- ── Decorative rings (pure atmosphere) ── -->
+    <View
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        android:background="@drawable/gold_circle"
+        android:alpha="0.4"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_splash1" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
+    <View
+        android:layout_width="380dp"
+        android:layout_height="380dp"
+        android:background="@drawable/gold_circle"
+        android:alpha="0.25"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- ── Golden center glow ── -->
+    <View
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:background="@drawable/splash_glow"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- ── Top book illustration ── -->
     <ImageView
         android:id="@+id/img_splash1"
-        android:layout_width="359dp"
-        android:layout_height="296dp"
-        android:layout_marginStart="-200dp"
-        android:layout_marginTop="-50dp"
-        android:layout_marginEnd="130dp"
-        android:layout_marginBottom="4dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:transitionName="trans_img_splash1"
-        app:layout_constraintBottom_toTopOf="@+id/logo_text"
+        android:scaleType="fitCenter"
+        android:alpha="0.92"
+        app:srcCompat="@drawable/img_splash1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img_splash1" />
+        app:layout_constraintBottom_toTopOf="@+id/logo_text"
+        android:layout_marginBottom="4dp" />
 
+    <!-- ── App name ── -->
+    <TextView
+        android:id="@+id/logo_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logo_text"
+        android:textColor="#FFD066"
+        android:textSize="96sp"
+        android:textStyle="bold"
+        android:letterSpacing="-0.04"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:shadowColor="#FFAA00"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="24"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <!-- ── Tagline ── -->
     <TextView
         android:id="@+id/logo_txt2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
         android:fontFamily="@font/app_font"
-        android:text="Online Book Selling App"
-        android:textColor="#E6A10D"
-        app:layout_constraintBottom_toTopOf="@+id/img_splash2"
-        app:layout_constraintEnd_toEndOf="@+id/logo_text"
-        app:layout_constraintStart_toStartOf="@+id/logo_text"
-        app:layout_constraintTop_toBottomOf="@+id/logo_text" />
+        android:text="ONLINE BOOK SELLING APP"
+        android:textColor="#80FFD066"
+        android:textSize="11sp"
+        android:letterSpacing="0.25"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/logo_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- ── Bottom book illustration ── -->
     <ImageView
         android:id="@+id/img_splash2"
-        android:layout_width="361dp"
-        android:layout_height="346dp"
-        android:layout_marginStart="67dp"
-        android:layout_marginBottom="-50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:scaleType="fitCenter"
+        android:alpha="0.92"
+        app:srcCompat="@drawable/img_splash2"
         app:layout_constraintTop_toBottomOf="@+id/logo_txt2"
-        app:srcCompat="@drawable/img_splash2" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp" />
+
+    <!-- ── Bottom brand strip ── -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="YOUR NEXT CHAPTER AWAITS"
+        android:textColor="#40FFD066"
+        android:textSize="9sp"
+        android:letterSpacing="0.3"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- ── Corner accent — top left ── -->
+    <View
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/gold_circle"
+        android:alpha="0.6"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ── Corner accent — bottom right ── -->
+    <View
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/gold_circle"
+        android:alpha="0.5"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

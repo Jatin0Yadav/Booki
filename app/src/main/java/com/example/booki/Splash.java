@@ -61,7 +61,7 @@ public class Splash extends AppCompatActivity {
 
             Intent i;
             if(check){
-                i = new Intent(this, Dashboard1.class);
+                i = new Intent(this, Dashboard.class);
                 startActivity(i);
                 finish();
             }

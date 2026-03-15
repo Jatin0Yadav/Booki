@@ -21,7 +21,7 @@ import com.example.booki.Fragments.FragmentOrders;
 import com.example.booki.Fragments.FragmentProfile;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Dashboard1 extends AppCompatActivity {
+public class Dashboard extends AppCompatActivity {
 
 
 
@@ -30,7 +30,7 @@ public class Dashboard1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_dashboard1);
+        setContentView(R.layout.activity_dashboard);
         View mainView = findViewById(R.id.main);
         if (mainView != null) {
             ViewCompat.setOnApplyWindowInsetsListener(mainView, (v, insets) -> {
