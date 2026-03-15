@@ -12,10 +12,19 @@ import com.example.booki.Models.cart_Model;
 import java.util.ArrayList;
 
 public class cart_Adapter extends RecyclerView.Adapter<cart_ViewHolder> {
+
     ArrayList<cart_Model> ar;
 
-    public cart_Adapter(ArrayList<cart_Model> ar) {
+    // ✅ Callback to notify the Activity when list changes
+    public interface OnCartChangedListener {
+        void onCartChanged(int newSize);
+    }
+
+    private OnCartChangedListener listener;
+
+    public cart_Adapter(ArrayList<cart_Model> ar, OnCartChangedListener listener) {
         this.ar = ar;
+        this.listener = listener;
     }
 
     @NonNull
@@ -32,13 +41,15 @@ public class cart_Adapter extends RecyclerView.Adapter<cart_ViewHolder> {
         holder.itemPrice.setText("₹ " + ar.get(position).getBook_amt());
         holder.itemQuantity.setText(ar.get(position).getBook_category());
 
-        // ✅ plus is null — removed from layout, so never call setOnClickListener on it
-        // minus = remove item from cart (optional: just leave empty for now)
         if (holder.minus != null) {
             holder.minus.setOnClickListener(v -> {
-                ar.remove(position);
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, ar.size());
+                int pos = holder.getAdapterPosition(); // ✅ always use getAdapterPosition()
+                if (pos != RecyclerView.NO_POSITION) {
+                    ar.remove(pos);
+                    notifyItemRemoved(pos);
+                    notifyItemRangeChanged(pos, ar.size());
+                    listener.onCartChanged(ar.size()); // ✅ notify Activity
+                }
             });
         }
     }

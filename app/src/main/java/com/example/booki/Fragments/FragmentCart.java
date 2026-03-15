@@ -70,7 +70,13 @@ public class FragmentCart extends Fragment {
         cart_rcview.setLayoutManager(new LinearLayoutManager(getContext()));
 
         cartList = new ArrayList<>();
-        adapter  = new cart_Adapter(cartList);
+
+        // ✅ Pass callback — updates tvItemCount whenever an item is removed
+        adapter = new cart_Adapter(cartList, newSize -> {
+            tvItemCount.setText(newSize + (newSize == 1 ? " item" : " items"));
+            recalculateTotalAmount(); // ✅ also update total when item removed
+        });
+
         cart_rcview.setAdapter(adapter);
 
         loadCartItems();
@@ -101,7 +107,6 @@ public class FragmentCart extends Fragment {
                             cart_Model item = document.toObject(cart_Model.class);
                             cartList.add(item);
 
-                            // ✅ safe parseInt — won't crash if price is empty/null
                             try {
                                 totalAmount += Integer.parseInt(item.getBook_amt().trim());
                             } catch (NumberFormatException e) {
@@ -111,15 +116,27 @@ public class FragmentCart extends Fragment {
 
                         adapter.notifyDataSetChanged();
 
-                        // ✅ String.valueOf() prevents Resources$NotFoundException crash
-                        tvTotalAmount.setText("₹ " + String.valueOf(totalAmount));
+                        tvTotalAmount.setText("₹ " + totalAmount);
 
-                        // ✅ was tvItemCount.setText() with no argument — that's illegal
-                        tvItemCount.setText(cartList.size() + " items");
+                        // ✅ Set initial count after data loads
+                        tvItemCount.setText(cartList.size() + (cartList.size() == 1 ? " item" : " items"));
 
                     } else {
                         Toast.makeText(getContext(), "Failed to load cart", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    // ✅ Recalculates total from the current cartList after a removal
+    private void recalculateTotalAmount() {
+        totalAmount = 0;
+        for (cart_Model item : cartList) {
+            try {
+                totalAmount += Integer.parseInt(item.getBook_amt().trim());
+            } catch (NumberFormatException e) {
+                // skip
+            }
+        }
+        tvTotalAmount.setText("₹ " + totalAmount);
     }
 }

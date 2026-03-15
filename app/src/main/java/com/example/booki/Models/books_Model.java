@@ -13,14 +13,14 @@ public class books_Model {
     private String book_edition;
     private String book_author;
     private Boolean isNegotiable;
-    private String book_amt; // String because Firestore stores price as String
+    private String book_amt;
+    private String book_img; // ✅ String for Firebase Storage URL
 
-    // ✅ REQUIRED by Firestore — without this toObject() crashes immediately
     public books_Model() {}
 
     public books_Model(String book_ID, String user_ID, String book_name, String book_category,
                        String book_subject, String book_author, String book_edition,
-                       String book_amt, Boolean isNegotiable, String book_description) {
+                       String book_amt, Boolean isNegotiable, String book_description, String book_img) {
         this.book_ID = book_ID;
         this.user_ID = user_ID;
         this.book_name = book_name;
@@ -31,10 +31,8 @@ public class books_Model {
         this.book_author = book_author;
         this.isNegotiable = isNegotiable;
         this.book_amt = book_amt;
+        this.book_img = book_img; // ✅ added
     }
-
-    // ✅ @PropertyName maps YOUR field name to the FIRESTORE field name.
-    // Firestore saves "title" but your model calls it "book_name" — this bridges the gap.
 
     @PropertyName("bookId")
     public String getBook_ID() { return book_ID; }
@@ -85,4 +83,10 @@ public class books_Model {
     public String getBook_amt() { return book_amt; }
     @PropertyName("price")
     public void setBook_amt(String book_amt) { this.book_amt = book_amt; }
+
+    // ✅ Image getter & setter — maps to "Image" field in Firestore
+    @PropertyName("imageurl")
+    public String getBook_img() { return book_img; }
+    @PropertyName("imageurl")
+    public void setBook_img(String book_img) { this.book_img = book_img; }
 }

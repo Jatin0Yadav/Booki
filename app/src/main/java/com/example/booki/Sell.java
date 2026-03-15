@@ -72,7 +72,7 @@ public class Sell extends AppCompatActivity {
         negotiable    = findViewById(R.id.cbNegotiable);
 
         String[] categories = {"Select Category", "JEE", "NEET", "UPSC", "SSC", "Other"};
-        // ✅ Custom spinner layout — white text on dark background
+
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(
                 this, R.layout.spinner_item, categories);
         categoryAdapter.setDropDownViewResource(R.layout.spinner_item);

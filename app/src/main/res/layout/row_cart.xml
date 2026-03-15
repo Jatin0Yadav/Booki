@@ -71,7 +71,7 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!-- Divider -->
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -101,7 +101,7 @@
                 android:layout_height="1dp"
                 android:visibility="gone" />
 
-            <!-- btn_minus = remove from cart -->
+
             <ImageView
                 android:id="@+id/btn_minus"
                 android:layout_width="32dp"
