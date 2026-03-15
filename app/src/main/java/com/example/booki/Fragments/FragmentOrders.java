@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,9 +26,10 @@ import java.util.List;
 
 public class FragmentOrders extends Fragment {
 
-    private static final String TAG = "FragmentOrders"; // ✅ for Logcat filtering
+    private static final String TAG = "FragmentOrders";
 
     RecyclerView recyclerOrders;
+    LinearLayout layoutEmptyOrders; // ✅ empty state view
 
     FirebaseFirestore db;
     FirebaseAuth auth;
@@ -59,9 +61,10 @@ public class FragmentOrders extends Fragment {
         }
 
         userId = auth.getCurrentUser().getUid();
-        Log.d(TAG, "Logged in userId: " + userId); // ✅ Step 1: verify userId
 
-        recyclerOrders = view.findViewById(R.id.recyclerOrders);
+        recyclerOrders   = view.findViewById(R.id.recyclerOrders);
+        layoutEmptyOrders = view.findViewById(R.id.layoutEmptyOrders); // ✅ bind empty state
+
         recyclerOrders.setLayoutManager(new LinearLayoutManager(getContext()));
 
         orderList = new ArrayList<>();
@@ -72,27 +75,20 @@ public class FragmentOrders extends Fragment {
     }
 
     private void loadOrders() {
-        Log.d(TAG, "loadOrders() called with userId: " + userId); // ✅ Step 2: confirm method runs
-
         db.collection("orders")
                 .whereEqualTo("userId", userId)
                 .get()
                 .addOnSuccessListener(query -> {
 
-                    Log.d(TAG, "Query success — documents found: " + query.size()); // ✅ Step 3: how many docs matched
-
                     orderList.clear();
 
                     if (query.isEmpty()) {
-                        Log.w(TAG, "No orders found for userId: " + userId); // ✅ Step 4: confirms userId mismatch
-                        Toast.makeText(getContext(), "No orders found", Toast.LENGTH_SHORT).show();
+                        Log.w(TAG, "No orders found for userId: " + userId);
+                        updateEmptyState(); // ✅ show empty state
                         return;
                     }
 
                     for (DocumentSnapshot doc : query.getDocuments()) {
-
-                        Log.d(TAG, "Order doc ID: " + doc.getId()); // ✅ Step 5: log each order doc
-                        Log.d(TAG, "Order data: " + doc.getData()); // ✅ Step 6: print ALL fields in doc
 
                         String paymentId = doc.getString("paymentId");
                         Long amountLong  = doc.getLong("totalAmount");
@@ -100,48 +96,48 @@ public class FragmentOrders extends Fragment {
 
                         List<String> bookIds = (List<String>) doc.get("bookIds");
 
-                        Log.d(TAG, "bookIds: " + bookIds); // ✅ Step 7: confirm bookIds field exists
-
                         if (bookIds != null && !bookIds.isEmpty()) {
-
                             for (String bookId : bookIds) {
-                                Log.d(TAG, "Fetching book: " + bookId); // ✅ Step 8: confirm book fetch starts
-
                                 db.collection("books")
                                         .document(bookId)
                                         .get()
                                         .addOnSuccessListener(bookDoc -> {
 
-                                            Log.d(TAG, "Book doc exists: " + bookDoc.exists()); // ✅ Step 9: confirm book found
-                                            Log.d(TAG, "Book data: " + bookDoc.getData());       // ✅ Step 10: print book fields
-
                                             String bookName = bookDoc.getString("title");
                                             if (bookName == null) bookName = "Unknown Book";
 
-                                            OrderModel order = new OrderModel(
+                                            orderList.add(new OrderModel(
                                                     doc.getId(),
                                                     paymentId,
                                                     amount,
                                                     bookName
-                                            );
+                                            ));
 
-                                            orderList.add(order);
                                             adapter.notifyDataSetChanged();
+                                            updateEmptyState(); // ✅ check after each book loads
                                         })
-                                        .addOnFailureListener(e -> {
-                                            Log.e(TAG, "Failed to fetch book: " + bookId + " — " + e.getMessage()); // ✅ Step 11
-                                            Toast.makeText(getContext(), "Failed to load book details", Toast.LENGTH_SHORT).show();
-                                        });
+                                        .addOnFailureListener(e ->
+                                                Log.e(TAG, "Failed to fetch book: " + e.getMessage())
+                                        );
                             }
-
-                        } else {
-                            Log.w(TAG, "bookIds is null or empty for order: " + doc.getId()); // ✅ Step 12
                         }
                     }
                 })
                 .addOnFailureListener(e -> {
-                    Log.e(TAG, "Firestore query failed: " + e.getMessage()); // ✅ Step 13
+                    Log.e(TAG, "Firestore query failed: " + e.getMessage());
                     Toast.makeText(getContext(), "Failed to load orders: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    updateEmptyState(); // ✅ show empty state on failure too
                 });
+    }
+
+    // ✅ toggles between empty state and recycler view
+    private void updateEmptyState() {
+        if (orderList.isEmpty()) {
+            recyclerOrders.setVisibility(View.GONE);
+            layoutEmptyOrders.setVisibility(View.VISIBLE);
+        } else {
+            recyclerOrders.setVisibility(View.VISIBLE);
+            layoutEmptyOrders.setVisibility(View.GONE);
+        }
     }
 }
