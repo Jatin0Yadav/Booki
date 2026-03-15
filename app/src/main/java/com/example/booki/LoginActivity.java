@@ -3,6 +3,7 @@ package com.example.booki;
 import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
@@ -57,7 +58,13 @@ public class LoginActivity extends AppCompatActivity {
 
 
         btn_go.setOnClickListener(v -> {
-            loginUser();
+            SharedPreferences pref = getSharedPreferences("login", MODE_PRIVATE);
+            SharedPreferences.Editor E = pref.edit();
+            E.putBoolean("flag", true);
+            E.apply();
+
+            Intent i = new Intent(this, Dashboard1.class);
+            startActivity(i);
         });
 
 

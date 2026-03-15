@@ -2,6 +2,7 @@ package com.example.booki;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Pair;
@@ -54,7 +55,22 @@ public class Splash extends AppCompatActivity {
         logo_txt2.setAnimation(downanim);
 
         handler.postDelayed(() -> {
-            Intent i = new Intent(Splash.this, LoginActivity.class);
+            SharedPreferences pref = getSharedPreferences("login", MODE_PRIVATE);
+
+            boolean check = pref.getBoolean("flag", false);
+
+            Intent i;
+            if(check){
+                i = new Intent(this, Dashboard1.class);
+                startActivity(i);
+                finish();
+            }
+
+            else{
+                i = new Intent(this, LoginActivity.class);
+                startActivity(i);
+                finish();
+            }
 
             Pair<View, String> pair = new Pair<>(img_splash1, "trans_img_splash1");         // variable_name, trans_name
 
