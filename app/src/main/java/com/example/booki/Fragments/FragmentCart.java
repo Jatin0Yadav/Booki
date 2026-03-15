@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Button;
@@ -33,6 +34,7 @@ public class FragmentCart extends Fragment {
 
     TextView tvTotalAmount, tvItemCount;
     Button btnConfirm;
+    LinearLayout layoutEmptyCart; // ✅ empty state view
 
     FirebaseFirestore db;
     FirebaseAuth auth;
@@ -62,19 +64,20 @@ public class FragmentCart extends Fragment {
             return;
         }
 
-        cart_rcview   = view.findViewById(R.id.cartrecyclerView);
-        tvTotalAmount = view.findViewById(R.id.tvTotalAmount);
-        tvItemCount   = view.findViewById(R.id.tvItemCount);
-        btnConfirm    = view.findViewById(R.id.btn_confirm);
+        cart_rcview      = view.findViewById(R.id.cartrecyclerView);
+        tvTotalAmount    = view.findViewById(R.id.tvTotalAmount);
+        tvItemCount      = view.findViewById(R.id.tvItemCount);
+        btnConfirm       = view.findViewById(R.id.btn_confirm);
+        layoutEmptyCart  = view.findViewById(R.id.layoutEmptyCart); // ✅ bind empty state
 
         cart_rcview.setLayoutManager(new LinearLayoutManager(getContext()));
 
         cartList = new ArrayList<>();
 
-        // ✅ Pass callback — updates tvItemCount whenever an item is removed
         adapter = new cart_Adapter(cartList, newSize -> {
             tvItemCount.setText(newSize + (newSize == 1 ? " item" : " items"));
-            recalculateTotalAmount(); // ✅ also update total when item removed
+            recalculateTotalAmount();
+            updateEmptyState(); // ✅ check empty state on every removal
         });
 
         cart_rcview.setAdapter(adapter);
@@ -110,16 +113,14 @@ public class FragmentCart extends Fragment {
                             try {
                                 totalAmount += Integer.parseInt(item.getBook_amt().trim());
                             } catch (NumberFormatException e) {
-                                // skip unparseable price
+                                // skip
                             }
                         }
 
                         adapter.notifyDataSetChanged();
-
                         tvTotalAmount.setText("₹ " + totalAmount);
-
-                        // ✅ Set initial count after data loads
                         tvItemCount.setText(cartList.size() + (cartList.size() == 1 ? " item" : " items"));
+                        updateEmptyState(); // ✅ check after data loads
 
                     } else {
                         Toast.makeText(getContext(), "Failed to load cart", Toast.LENGTH_SHORT).show();
@@ -127,7 +128,6 @@ public class FragmentCart extends Fragment {
                 });
     }
 
-    // ✅ Recalculates total from the current cartList after a removal
     private void recalculateTotalAmount() {
         totalAmount = 0;
         for (cart_Model item : cartList) {
@@ -138,5 +138,20 @@ public class FragmentCart extends Fragment {
             }
         }
         tvTotalAmount.setText("₹ " + totalAmount);
+    }
+
+    // ✅ toggles between empty state and recycler view
+    private void updateEmptyState() {
+        if (cartList.isEmpty()) {
+            cart_rcview.setVisibility(View.GONE);
+            layoutEmptyCart.setVisibility(View.VISIBLE);
+            btnConfirm.setEnabled(false); // ✅ disable checkout when empty
+            btnConfirm.setAlpha(0.5f);    // ✅ visually dim the button
+        } else {
+            cart_rcview.setVisibility(View.VISIBLE);
+            layoutEmptyCart.setVisibility(View.GONE);
+            btnConfirm.setEnabled(true);
+            btnConfirm.setAlpha(1.0f);
+        }
     }
 }
