@@ -136,22 +136,21 @@ public class Payment extends AppCompatActivity implements PaymentResultListener 
 
         Map<String, Object> order = new HashMap<>();
 
-        order.put("buyerId", userId);
+        order.put("userId", userId);
         order.put("paymentId", paymentId);
         order.put("totalAmount", totalAmount);
         order.put("bookIds", allBooks);
         order.put("timestamp", System.currentTimeMillis());
 
-        db.collection("orders").add(order).addOnSuccessListener(documentReference -> {
-                Toast.makeText(this, "Order Created", Toast.LENGTH_SHORT).show();
-                clearCart();
-                finish();
-            })
+        db.collection("orders").add(order)
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(this, "Order Created", Toast.LENGTH_SHORT).show();
+                    clearCart();
+                    finish();
+                })
                 .addOnFailureListener(e -> {
-            Toast.makeText(this, "Order Failed", Toast.LENGTH_SHORT).show();
-        });
-
-
+                    Toast.makeText(this, "Order Failed", Toast.LENGTH_SHORT).show();
+                });
     }
 
     private void clearCart() {

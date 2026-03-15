@@ -19,27 +19,25 @@ public class order_adapter extends RecyclerView.Adapter<order_adapter.OrderViewH
     List<OrderModel> orderList;
 
     public order_adapter(Context context, List<OrderModel> orderList) {
-        this.context = context;
+        this.context   = context;
         this.orderList = orderList;
     }
 
     @NonNull
     @Override
     public OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(context).inflate(R.layout.row_order, parent, false);
         return new OrderViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
-
         OrderModel order = orderList.get(position);
 
-        holder.tvBookName.setText(order.getBookName());
+        holder.tvBookName.setText(order.getBookName() != null ? order.getBookName() : "Unknown Book");
         holder.tvOrderId.setText("Order ID: " + order.getOrderId());
         holder.tvPaymentId.setText("Payment ID: " + order.getPaymentId());
-        holder.tvAmount.setText("₹" + order.getTotalAmount());
+        holder.tvAmount.setText("₹ " + order.getTotalAmount());
     }
 
     @Override
@@ -53,11 +51,10 @@ public class order_adapter extends RecyclerView.Adapter<order_adapter.OrderViewH
 
         public OrderViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            tvBookName = itemView.findViewById(R.id.tvBookName);
-            tvOrderId = itemView.findViewById(R.id.tvOrderId);
+            tvBookName  = itemView.findViewById(R.id.tvBookName);
+            tvOrderId   = itemView.findViewById(R.id.tvOrderId);
             tvPaymentId = itemView.findViewById(R.id.tvPaymentId);
-            tvAmount = itemView.findViewById(R.id.tvTotalAmount);
+            tvAmount    = itemView.findViewById(R.id.tvTotalAmount);
         }
     }
 }
