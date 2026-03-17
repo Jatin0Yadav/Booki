@@ -6,6 +6,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.booki.Models.books_Model;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +24,7 @@ public class each_Book extends AppCompatActivity {
     FirebaseFirestore db;
     FirebaseAuth auth;
 
+    Toolbar toolbar;
     String userId, bookId;
     books_Model currentBook;
 
@@ -30,6 +32,15 @@ public class each_Book extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_each_book);
+
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        toolbar.setNavigationOnClickListener(v ->
+                getOnBackPressedDispatcher().onBackPressed()
+        );
+
 
         btnAddToCart    = findViewById(R.id.btnAddToCart);
         bookTitle       = findViewById(R.id.bookTitle);

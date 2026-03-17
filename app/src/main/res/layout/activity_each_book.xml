@@ -20,7 +20,7 @@
             app:contentScrim="@color/bg_primary"
             app:titleEnabled="false">
 
-            <!-- Book Cover Area -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -46,7 +46,7 @@
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
-            <!-- Back button toolbar -->
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
