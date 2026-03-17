@@ -43,23 +43,19 @@ public class Payment extends AppCompatActivity implements PaymentResultListener 
                 getOnBackPressedDispatcher().onBackPressed()
         );
 
-        // Views
         tvTotalAmount = findViewById(R.id.tvTotalAmount);
         btnPayNow = findViewById(R.id.btnPayNow);
 
-        // Firebase
         auth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
+        db   = FirebaseFirestore.getInstance();
 
         if (auth.getCurrentUser() != null) {
             userId = auth.getCurrentUser().getUid();
         }
 
-        // Get total amount from FragmentCart
         totalAmount = getIntent().getIntExtra("totalAmount", 0);
         tvTotalAmount.setText("₹" + totalAmount);
 
-        // Preload Razorpay
         Checkout.preload(getApplicationContext());
 
         btnPayNow.setOnClickListener(v -> {
@@ -72,29 +68,21 @@ public class Payment extends AppCompatActivity implements PaymentResultListener 
     }
 
     private void startPayment() {
-
         Checkout checkout = new Checkout();
-
-        // Replace with your Razorpay Test Key
         checkout.setKeyID("rzp_test_SQFdOry4WI83dF");
 
         Activity activity = this;
 
         try {
             JSONObject options = new JSONObject();
-
             options.put("name", "Booki");
             options.put("description", "Cart Payment");
             options.put("currency", "INR");
-
-            // Amount should be in paise
             options.put("amount", totalAmount * 100);
 
-            // Prefill details (optional)
             JSONObject prefill = new JSONObject();
             prefill.put("email", "test@booki.com");
             prefill.put("contact", "9876543210");
-
             options.put("prefill", prefill);
 
             checkout.open(activity, options);
@@ -104,59 +92,69 @@ public class Payment extends AppCompatActivity implements PaymentResultListener 
         }
     }
 
-
     @Override
     public void onPaymentSuccess(String razorpayPaymentID) {
         Toast.makeText(this, "Payment Successful", Toast.LENGTH_LONG).show();
 
-        saveOrder(razorpayPaymentID);
-        finish();
-    }
+        // Notify user immediately on payment success
+        NotificationHelper.showLocal(
+                this,
+                "Payment Successful 🎉",
+                "Your payment of ₹" + totalAmount + " was successful!"
+        );
 
+        saveOrder(razorpayPaymentID);
+    }
 
     @Override
     public void onPaymentError(int code, String response) {
         Toast.makeText(this, "Payment Failed: " + response, Toast.LENGTH_LONG).show();
+
+        // ✅ Notify user on payment failure too
+        NotificationHelper.showLocal(
+                this,
+                "Payment Failed ❌",
+                "Something went wrong. Please try again."
+        );
     }
 
-
-    // get all the books in the cart.
-    public void saveOrder(String paymentId){
-
+    public void saveOrder(String paymentId) {
         db.collection("users").document(userId)
                 .collection("cart").get()
                 .addOnSuccessListener(query -> {
-
-                List<String> allBooks = new ArrayList<>();
-                for (DocumentSnapshot doc : query.getDocuments()) {
-                    String bookId = doc.getString("bookId");
-                    allBooks.add(bookId);       // creates the list of all the books in the cart
-                }
-
-                createOrder(paymentId, allBooks);
-        });
+                    List<String> allBooks = new ArrayList<>();
+                    for (DocumentSnapshot doc : query.getDocuments()) {
+                        String bookId = doc.getString("bookId");
+                        allBooks.add(bookId);
+                    }
+                    createOrder(paymentId, allBooks);
+                });
     }
 
-    // saving the order in the database.
     private void createOrder(String paymentId, List<String> allBooks) {
-
         Map<String, Object> order = new HashMap<>();
-
-        order.put("userId", userId);
-        order.put("paymentId", paymentId);
+        order.put("userId",      userId);
+        order.put("paymentId",   paymentId);
         order.put("totalAmount", totalAmount);
-        order.put("bookIds", allBooks);
-        order.put("timestamp", System.currentTimeMillis());
+        order.put("bookIds",     allBooks);
+        order.put("timestamp",   System.currentTimeMillis());
 
         db.collection("orders").add(order)
                 .addOnSuccessListener(documentReference -> {
-                    Toast.makeText(this, "Order Created", Toast.LENGTH_SHORT).show();
+
+                    // Notify user when order is confirmed in Firestore
+                    NotificationHelper.showLocal(
+                            this,
+                            "Order Confirmed 📦",
+                            "Your order has been placed successfully. Happy reading!"
+                    );
+
                     clearCart();
                     finish();
                 })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Order Failed", Toast.LENGTH_SHORT).show();
-                });
+                .addOnFailureListener(e ->
+                        Toast.makeText(this, "Order Failed", Toast.LENGTH_SHORT).show()
+                );
     }
 
     private void clearCart() {
@@ -167,7 +165,7 @@ public class Payment extends AppCompatActivity implements PaymentResultListener 
                 .collection("cart")
                 .get()
                 .addOnSuccessListener(query -> {
-                    for (com.google.firebase.firestore.DocumentSnapshot doc : query.getDocuments()) {
+                    for (DocumentSnapshot doc : query.getDocuments()) {
                         doc.getReference().delete();
                     }
                 });

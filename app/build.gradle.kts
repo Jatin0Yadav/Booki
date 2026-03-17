@@ -62,6 +62,7 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.leanback)
+    implementation(libs.firebase.messaging)
 
 
     // Testing

@@ -18,6 +18,7 @@ playServicesWallet = "19.5.0"
 lifecycleViewmodelKtx = "2.10.0"
 lifecycleLivedataKtx = "2.10.0"
 leanback = "1.2.0"
+firebaseMessaging = "25.0.1"
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -38,5 +39,6 @@ play-services-wallet = { group = "com.google.android.gms", name = "play-services
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
 leanback = { group = "androidx.leanback", name = "leanback", version.ref = "leanback" }
+firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessaging" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

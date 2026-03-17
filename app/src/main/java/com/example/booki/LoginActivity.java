@@ -62,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
             E.putBoolean("flag", true);
             E.apply();
 
+            NotificationHelper.saveFcmToken();   // for notification service
             Intent i = new Intent(this, Dashboard.class);
             startActivity(i);
         });
