@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.booki.Models.OrderModel;
-import com.example.booki.order_adapter;
+import com.example.booki.Adapters.Order_Adapter;
 import com.example.booki.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -35,7 +35,7 @@ public class FragmentOrders extends Fragment {
     FirebaseAuth auth;
 
     List<OrderModel> orderList;
-    order_adapter adapter;
+    Order_Adapter adapter;
 
     String userId;
 
@@ -68,7 +68,7 @@ public class FragmentOrders extends Fragment {
         recyclerOrders.setLayoutManager(new LinearLayoutManager(getContext()));
 
         orderList = new ArrayList<>();
-        adapter   = new order_adapter(getContext(), orderList);
+        adapter   = new Order_Adapter(getContext(), orderList);
         recyclerOrders.setAdapter(adapter);
 
         loadOrders();

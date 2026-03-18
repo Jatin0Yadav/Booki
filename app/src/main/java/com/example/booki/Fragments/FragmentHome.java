@@ -19,10 +19,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.booki.Models.books_Model;
 import com.example.booki.R;
 import com.example.booki.Sell;
-import com.example.booki.category_Adapter;
+import com.example.booki.Adapters.category_Adapter;
 import com.google.android.material.chip.Chip;
-import com.google.android.material.search.SearchBar;
-import com.google.android.material.search.SearchView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 

@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.booki.Models.cart_Model;
 import com.example.booki.Payment;
 import com.example.booki.R;
-import com.example.booki.cart_Adapter;
+import com.example.booki.Adapters.cart_Adapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;

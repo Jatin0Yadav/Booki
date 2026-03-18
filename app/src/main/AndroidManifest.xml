@@ -54,7 +54,7 @@
             android:name=".Payment"
             android:exported="true" />
         <activity
-            android:name=".each_Book"
+            android:name=".Each_Book"
             android:exported="true" />
         <activity
             android:name=".Sell"

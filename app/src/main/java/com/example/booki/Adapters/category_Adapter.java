@@ -1,4 +1,4 @@
-package com.example.booki;
+package com.example.booki.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.booki.Models.books_Model;
+import com.example.booki.R;
+import com.example.booki.ViewHolder.category_ViewHolder;
+import com.example.booki.Each_Book;
 
 import java.util.ArrayList;
 
@@ -50,7 +53,7 @@ public class category_Adapter extends RecyclerView.Adapter<category_ViewHolder> 
             if (pos != RecyclerView.NO_POSITION) {
                 books_Model clickedBook = ar.get(pos);
 
-                Intent i = new Intent(context, each_Book.class);
+                Intent i = new Intent(context, Each_Book.class);
                 i.putExtra("book_ID", clickedBook.getBook_ID());
                 context.startActivity(i);
             }

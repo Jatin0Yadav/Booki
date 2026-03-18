@@ -1,4 +1,4 @@
-package com.example.booki;
+package com.example.booki.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,15 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.booki.Models.OrderModel;
+import com.example.booki.R;
 
 import java.util.List;
 
-public class order_adapter extends RecyclerView.Adapter<order_adapter.OrderViewHolder> {
+public class Order_Adapter extends RecyclerView.Adapter<Order_Adapter.OrderViewHolder> {
 
     Context context;
     List<OrderModel> orderList;
 
-    public order_adapter(Context context, List<OrderModel> orderList) {
+    public Order_Adapter(Context context, List<OrderModel> orderList) {
         this.context   = context;
         this.orderList = orderList;
     }

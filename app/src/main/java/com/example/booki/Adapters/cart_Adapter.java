@@ -1,4 +1,4 @@
-package com.example.booki;
+package com.example.booki.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.booki.Models.cart_Model;
+import com.example.booki.R;
+import com.example.booki.ViewHolder.cart_ViewHolder;
 
 import java.util.ArrayList;
 

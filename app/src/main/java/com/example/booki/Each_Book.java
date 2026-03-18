@@ -16,7 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class each_Book extends AppCompatActivity {
+public class Each_Book extends AppCompatActivity {
 
     Button btnAddToCart;
     TextView bookTitle, bookCategory, bookPrice, bookDescription, sellerName, bookAuthor;

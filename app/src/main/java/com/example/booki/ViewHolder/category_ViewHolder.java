@@ -1,4 +1,4 @@
-package com.example.booki;
+package com.example.booki.ViewHolder;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -7,11 +7,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.booki.R;
+
 
 public class category_ViewHolder extends RecyclerView.ViewHolder {
-    TextView book_name;
-    TextView book_amt;
-    ImageView book_img;
+    public TextView book_name;
+    public TextView book_amt;
+    public ImageView book_img;
 
     public category_ViewHolder(@NonNull View itemView) {
         super(itemView);

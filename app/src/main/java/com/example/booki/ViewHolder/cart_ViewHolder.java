@@ -1,4 +1,4 @@
-package com.example.booki;
+package com.example.booki.ViewHolder;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -7,10 +7,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.booki.R;
+
 public class cart_ViewHolder extends RecyclerView.ViewHolder {
 
-    TextView itemName, itemPrice, itemQuantity;
-    ImageView minus;
+    public TextView itemName, itemPrice, itemQuantity;
+    public ImageView minus;
 
     public cart_ViewHolder(@NonNull View itemView) {
         super(itemView);
