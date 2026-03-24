@@ -1,11 +1,11 @@
 package com.example.booki;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -82,7 +82,7 @@ public class OrderTracking extends FragmentActivity implements OnMapReadyCallbac
         tvAmountPaid       = findViewById(R.id.tvAmountPaid);
         tvOrderPlacedTime  = findViewById(R.id.tvOrderPlacedTime);
         btnBackTracking    = findViewById(R.id.btnBackTracking);
-        btnNeedHelp        = (CardView) findViewById(R.id.btnNeedHelp);
+        btnNeedHelp        = findViewById(R.id.btnNeedHelp);
 
         iconConfirmed       = findViewById(R.id.iconConfirmed);
         iconShipped         = findViewById(R.id.iconShipped);
@@ -179,37 +179,37 @@ public class OrderTracking extends FragmentActivity implements OnMapReadyCallbac
 
     private void updateStepperUI(Status status) {
 
-        int accentColor  = getResources().getColor(R.color.accent, null);
-        int elevatedColor = getResources().getColor(R.color.bg_elevated, null);
-        int borderColor  = getResources().getColor(R.color.border, null);
-        int primaryText  = getResources().getColor(R.color.text_primary, null);
-        int secondaryText = getResources().getColor(R.color.text_secondary, null);
+        int accentColor  = ContextCompat.getColor(this, R.color.accent);
+        int elevatedColor = ContextCompat.getColor(this, R.color.bg_elevated);
+        int borderColor  = ContextCompat.getColor(this, R.color.border);
+        int primaryText  = ContextCompat.getColor(this, R.color.text_primary);
+        int secondaryText = ContextCompat.getColor(this, R.color.text_secondary);
+        int onAccentColor = ContextCompat.getColor(this, R.color.text_on_accent);
 
 
         boolean confirmedDone = status.ordinal() >= Status.CONFIRMED.ordinal();
         iconConfirmed.setCardBackgroundColor(confirmedDone ? accentColor : elevatedColor);
         lineConfirmed.setBackgroundColor(confirmedDone ? accentColor : borderColor);
-        updateStepText(R.id.stepConfirmed, confirmedDone ? primaryText : secondaryText);
 
 
         boolean shippedDone = status.ordinal() >= Status.SHIPPED.ordinal();
         iconShipped.setCardBackgroundColor(shippedDone ? accentColor : elevatedColor);
         setIconText(iconShipped, shippedDone ? "✓" : "3",
-                shippedDone ? getResources().getColor(R.color.text_on_accent, null) : secondaryText);
+                shippedDone ? onAccentColor : secondaryText);
         lineShipped.setBackgroundColor(shippedDone ? accentColor : borderColor);
 
 
         boolean outDone = status.ordinal() >= Status.OUT_FOR_DELIVERY.ordinal();
         iconOutForDelivery.setCardBackgroundColor(outDone ? accentColor : elevatedColor);
         setIconText(iconOutForDelivery, outDone ? "✓" : "4",
-                outDone ? getResources().getColor(R.color.text_on_accent, null) : secondaryText);
+                outDone ? onAccentColor : secondaryText);
         lineOutForDelivery.setBackgroundColor(outDone ? accentColor : borderColor);
 
 
         boolean deliveredDone = status.ordinal() >= Status.DELIVERED.ordinal();
         iconDelivered.setCardBackgroundColor(deliveredDone ? accentColor : elevatedColor);
         setIconText(iconDelivered, deliveredDone ? "✓" : "5",
-                deliveredDone ? getResources().getColor(R.color.text_on_accent, null) : secondaryText);
+                deliveredDone ? onAccentColor : secondaryText);
 
         switch (status) {
             case ORDER_PLACED:
@@ -240,14 +240,6 @@ public class OrderTracking extends FragmentActivity implements OnMapReadyCallbac
             TextView tv = (TextView) card.getChildAt(0);
             tv.setText(text);
             tv.setTextColor(color);
-        }
-    }
-
-    private void updateStepText(int stepLayoutId, int color) {
-        android.view.View stepLayout = findViewById(stepLayoutId);
-        if (stepLayout instanceof android.view.ViewGroup) {
-
-
         }
     }
 }
