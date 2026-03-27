@@ -66,39 +66,39 @@ public class FragmentHome extends Fragment {
         booksRecycler = view.findViewById(R.id.bookslistRecycler);
         tvSelectedCategory = view.findViewById(R.id.tvSelectedCategory);
 
-        Chip chipJee = view.findViewById(R.id.chip_jee);
-        Chip chipUpsc = view.findViewById(R.id.chip_upsc);
-        Chip chipNeet = view.findViewById(R.id.chip_neet);
+//        Chip chipJee = view.findViewById(R.id.chip_jee);
+//        Chip chipUpsc = view.findViewById(R.id.chip_upsc);
+//        Chip chipNeet = view.findViewById(R.id.chip_neet);
 
 
         // RecyclerView Setup:
         // setting the recycler view in grid format
-        GridLayoutManager gridLayout = new GridLayoutManager(getContext(), 2);
-        booksRecycler.setLayoutManager(gridLayout);
-        // note card should be designed according to the given layout.
-
-        // Default Load
-        chipJee.setChecked(true);
-        loadBooks("JEE");
-
-        // Chip Click Listeners
-        chipJee.setOnClickListener(v -> {
-            currentCategory = "JEE";
-            tvSelectedCategory.setText(R.string.jee_books);
-            loadBooks(currentCategory);
-        });
-
-        chipUpsc.setOnClickListener(v -> {
-            currentCategory = "UPSC";
-            tvSelectedCategory.setText(R.string.upsc_books);
-            loadBooks(currentCategory);
-        });
-
-        chipNeet.setOnClickListener(v -> {
-            currentCategory = "NEET";
-            tvSelectedCategory.setText(R.string.neet_books);
-            loadBooks(currentCategory);
-        });
+//        GridLayoutManager gridLayout = new GridLayoutManager(getContext(), 2);
+//        booksRecycler.setLayoutManager(gridLayout);
+//        // note card should be designed according to the given layout.
+//
+//        // Default Load
+//        chipJee.setChecked(true);
+//        loadBooks("JEE");
+//
+//        // Chip Click Listeners
+//        chipJee.setOnClickListener(v -> {
+//            currentCategory = "JEE";
+//            tvSelectedCategory.setText(R.string.jee_books);
+//            loadBooks(currentCategory);
+//        });
+//
+//        chipUpsc.setOnClickListener(v -> {
+//            currentCategory = "UPSC";
+//            tvSelectedCategory.setText(R.string.upsc_books);
+//            loadBooks(currentCategory);
+//        });
+//
+//        chipNeet.setOnClickListener(v -> {
+//            currentCategory = "NEET";
+//            tvSelectedCategory.setText(R.string.neet_books);
+//            loadBooks(currentCategory);
+//        });
 
 
     }
